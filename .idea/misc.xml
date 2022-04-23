@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_item.xml" value="0.187" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_blue_4dp.xml" value="0.223" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_dark_10.xml" value="0.1405" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_green_6dp.xml" value="0.223" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_white_6dp.xml" value="0.223" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_stroke_rectangle_blue_6dp.xml" value="0.1295" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/ic_list_fill.xml" value="0.187" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/ripple_rectangle_blue_6dp.xml" value="0.1165" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/ripple_rectangle_primary.xml" value="0.1165" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/ripple_rectangle_soft_dark.xml" value="0.1405" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/ripple_round_primary.xml" value="0.1405" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/bottom_sheet_chpater.xml" value="0.3625" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_detail.xml" value="0.33" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_reader.xml" value="0.33" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/item_chapter.xml" value="0.2" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/item_home_new.xml" value="0.3625" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/item_home_popular.xml" value="0.22" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/item_reader.xml" value="0.25" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/menu/menu.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
