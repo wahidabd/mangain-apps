@@ -33,4 +33,5 @@ object Constant {
     const val MANHWA = "Manhwa"
     const val MANHUA = "Manhua"
 
+    const val STARTING_PAGE_INDEX = 1
 }

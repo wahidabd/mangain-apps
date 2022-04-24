@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipe_refresh"
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,118 +8,147 @@
     android:background="@color/colorPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="300dp"
-                android:indeterminateTint="@color/colorPrimaryDark"/>
-
-            <LinearLayout
-                android:id="@+id/rl_content"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="300dp"
+                    android:indeterminateTint="@color/colorPrimaryDark"/>
 
                 <LinearLayout
+                    android:id="@+id/rl_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="10dp">
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Genre"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="16sp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:itemCount="2"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Populer Hari ini"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_medium" />
+
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_popular"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_home_popular" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_placeholder"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginHorizontal="10dp">
+
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Rilisan Terbaru"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_medium"
+                            android:paddingVertical="2dp"
+                            android:paddingHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:background="@drawable/ripple_rectangle_blue_6dp"/>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_new_manga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_home_new"
+                        tools:itemCount="1"
+                        android:layout_marginHorizontal="10dp"/>
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/tv_show_all"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Populer Hari ini"
-                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center_horizontal"
+                        android:paddingVertical="8dp"
+                        android:text="Lihat Semua"
                         android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_medium" />
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/ripple_rectangle_soft_dark"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
+            </RelativeLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_popular"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_home_popular" />
+        </androidx.core.widget.NestedScrollView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/grey_placeholder"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginHorizontal="10dp">
-
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Rilisan Terbaru"
-                        android:textSize="16sp"
-                        android:textColor="@color/white"
-                        android:layout_gravity="bottom"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lihat"
-                        android:textSize="16sp"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_medium"
-                        android:paddingVertical="2dp"
-                        android:paddingHorizontal="8dp"
-                        android:textAlignment="center"
-                        android:background="@drawable/ripple_rectangle_blue_6dp"/>
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_new_manga"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_home_new"
-                    tools:itemCount="1"
-                    android:layout_marginHorizontal="10dp"/>
-
-                <TextView
-                    android:id="@+id/tv_show_all"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:gravity="center_horizontal"
-                    android:paddingVertical="8dp"
-                    android:text="Lihat Semua"
-                    android:textColor="@color/white"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/ripple_rectangle_soft_dark"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</FrameLayout>

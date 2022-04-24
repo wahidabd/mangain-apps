@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var newAdapter: HomeNewMangaAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
         setupView()
         subscribe()
@@ -40,6 +40,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupView(){
+
+        binding.tvShowAll.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToNewAnimeFragment()
+            findNavController().navigate(action)
+        }
 
         popularAdapter = HomePopularAdapter()
         binding.rvPopular.apply {
@@ -89,6 +94,11 @@ class HomeFragment : Fragment() {
     private fun onClick(id: String){
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id)
         findNavController().navigate(action)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

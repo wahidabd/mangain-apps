@@ -13,12 +13,19 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newAnimeFragment"
+            app:destination="@id/newAnimeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mangaFragment"
         android:name="com.wahidabd.mangain.view.manga.MangaFragment"
         android:label="fragment_manga"
-        tools:layout="@layout/fragment_manga" />
+        tools:layout="@layout/fragment_manga" >
+        <action
+            android:id="@+id/action_mangaFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.wahidabd.mangain.view.bookmark.BookmarkFragment"
@@ -49,5 +56,14 @@
         <argument
             android:name="id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/newAnimeFragment"
+        android:name="com.wahidabd.mangain.view.home.NewAnimeFragment"
+        android:label="fragment_new_anime"
+        tools:layout="@layout/fragment_new_anime" >
+        <action
+            android:id="@+id/action_newAnimeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

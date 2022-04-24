@@ -2,6 +2,7 @@ package com.wahidabd.mangain.data.networks.service
 
 import com.wahidabd.mangain.data.responses.ChapterResponse
 import com.wahidabd.mangain.data.responses.KomikindoHomeResponse
+import com.wahidabd.mangain.data.responses.ListKomikResponse
 import com.wahidabd.mangain.data.responses.MangaDetailResponse
 import com.wahidabd.mangain.utils.Constant
 import retrofit2.Response
@@ -22,4 +23,24 @@ interface KomikindoService {
     suspend fun chapter(
         @Path("id") id: String
     ): Response<ChapterResponse>
+
+    @GET(Constant.KOMIKINDO_KOMIK)
+    suspend fun komik(
+        @Path("page") page: Int
+    ): ListKomikResponse
+
+    @GET(Constant.KOMIKINDO_MANHWA)
+    suspend fun manhwa(
+        @Path("page") page: Int
+    ): ListKomikResponse
+
+    @GET(Constant.KOMIKINDO_MANHUA)
+    suspend fun manhua(
+        @Path("page") page: Int
+    ): ListKomikResponse
+
+    @GET(Constant.KOMIKINDO_DAFTAR)
+    suspend fun daftar(
+        @Path("page") page: Int
+    ): ListKomikResponse
 }
