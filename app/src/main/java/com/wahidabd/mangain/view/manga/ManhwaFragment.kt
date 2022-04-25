@@ -12,10 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import com.wahidabd.mangain.R
 import com.wahidabd.mangain.databinding.FragmentManhwaBinding
-import com.wahidabd.mangain.view.home.NewAnimeFragmentDirections
-import com.wahidabd.mangain.view.home.adapter.KomikPagingAdapter
+import com.wahidabd.mangain.view.manga.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikLoadStateAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +41,7 @@ class ManhwaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        pagingAdapter = KomikPagingAdapter()
+        pagingAdapter = KomikPagingAdapter(requireContext())
         binding.rvKomik.apply {
             adapter = pagingAdapter.withLoadStateHeaderAndFooter(
                 header = KomikLoadStateAdapter{pagingAdapter.retry()},

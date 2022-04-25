@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.wahidabd.mangain.core.Status
 import com.wahidabd.mangain.databinding.FragmentReaderBinding
 import com.wahidabd.mangain.utils.quickShowToast
@@ -40,17 +41,26 @@ class ReaderFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        readerAdapter = ReaderAdapter()
+        readerAdapter = ReaderAdapter(requireContext())
         binding.rvReader.apply {
             adapter = readerAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-//        binding.swipeRefresh.setOnRefreshListener {
-//            binding.swipeRefresh.isRefreshing = true
-//            viewModel.reader(args.id)
-//            subscribe()
-//        }
+        binding.rvReader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if(!binding.rvReader.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE){
+                    binding.btnNext.visibility = View.VISIBLE
+                    binding.btnPrev.visibility = View.VISIBLE
+                }else{
+                    binding.btnNext.visibility = View.GONE
+                    binding.btnPrev.visibility = View.GONE
+                }
+
+            }
+        })
 
         viewModel.reader(args.id)
         subscribe()
@@ -65,7 +75,7 @@ class ReaderFragment : Fragment() {
                 }
 
                 Status.ERROR -> {
-//                    binding.progressCircular.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
                     quickShowToast(it.message.toString())
                 }
                 else -> {}
@@ -76,9 +86,21 @@ class ReaderFragment : Fragment() {
             binding.tvTitle.text = it.title
             readerAdapter.setData = it.data
 
+            binding.btnNext.isEnabled = it.next != null
+            binding.btnPrev.isEnabled = it.prev != null
+
+            binding.btnNext.setOnClickListener { _ ->
+                val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.next!!)
+                findNavController().navigate(action)
+            }
+
+            binding.btnPrev.setOnClickListener { _ ->
+                val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.prev!!)
+                findNavController().navigate(action)
+            }
+
             binding.progressBar.visibility = View.GONE
             binding.rvReader.visibility = View.VISIBLE
-//            binding.swipeRefresh.isRefreshing = false
         }
     }
 

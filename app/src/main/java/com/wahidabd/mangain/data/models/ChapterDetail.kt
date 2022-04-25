@@ -2,7 +2,7 @@ package com.wahidabd.mangain.data.models
 
 data class ChapterDetail(
     val title: String,
-    val prev: String,
+    val prev: String? = null,
     val next: String? = null,
     val data: List<DataChapterDetail>
 )

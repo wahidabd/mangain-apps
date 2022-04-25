@@ -1,5 +1,6 @@
 package com.wahidabd.mangain.view.home.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,7 +11,9 @@ import com.wahidabd.mangain.data.models.NewManga
 import com.wahidabd.mangain.data.models.PopularDay
 import com.wahidabd.mangain.databinding.ItemHomeNewBinding
 import com.wahidabd.mangain.databinding.ItemHomePopularBinding
+import com.wahidabd.mangain.utils.circularProgress
 import com.wahidabd.mangain.utils.setFlag
+import com.wahidabd.mangain.utils.setImageChapter
 
 class HomeNewMangaAdapter : RecyclerView.Adapter<HomeNewMangaAdapter.ViewHolder>() {
 
@@ -57,6 +60,8 @@ class HomeNewMangaAdapter : RecyclerView.Adapter<HomeNewMangaAdapter.ViewHolder>
 
                 imgFlag.setFlag(data.type)
                 imgCover.load(data.cover)
+//                val progress = circularProgress(context)
+//                imgCover.setImageChapter(data.cover, progress)
 
                 rootView.setOnClickListener {
                     onItemClick?.let { onItemClick(data.id) }

@@ -17,6 +17,7 @@ import com.wahidabd.mangain.core.Status
 import com.wahidabd.mangain.databinding.FragmentHomeBinding
 import com.wahidabd.mangain.view.home.adapter.HomeNewMangaAdapter
 import com.wahidabd.mangain.view.home.adapter.HomePopularAdapter
+import com.wahidabd.mangain.view.home.adapter.PopularAdapter
 import com.wahidabd.mangain.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,6 +31,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var popularAdapter: HomePopularAdapter
     private lateinit var newAdapter: HomeNewMangaAdapter
+    private lateinit var pAdapter: PopularAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
@@ -42,6 +44,11 @@ class HomeFragment : Fragment() {
     private fun setupView(){
 
         binding.tvShowAll.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToNewAnimeFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.tvShow.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToNewAnimeFragment()
             findNavController().navigate(action)
         }
@@ -60,6 +67,14 @@ class HomeFragment : Fragment() {
             itemAnimator = DefaultItemAnimator()
         }
 
+        pAdapter = PopularAdapter(requireContext())
+        binding.rvPopularKomik.apply {
+            adapter = pAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            itemAnimator = DefaultItemAnimator()
+        }
+
+        pAdapter.setOnItemClicked(::onClick)
         popularAdapter.setOnItemClicked(::onClick)
         newAdapter.setOnItemClicked(::onClick)
 
@@ -81,6 +96,7 @@ class HomeFragment : Fragment() {
                     Status.SUCCESS -> {
                         popularAdapter.setData = it.data?.home?.popular_day!!
                         newAdapter.setData = it.data.home.new_manga
+                        pAdapter.setData = it.data.home.popular
 
                         binding.swipeRefresh.isRefreshing = false
                         binding.rlContent.visibility = View.VISIBLE

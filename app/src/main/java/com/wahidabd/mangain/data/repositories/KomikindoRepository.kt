@@ -58,6 +58,15 @@ class KomikindoRepository @Inject constructor(
             ), pagingSourceFactory = {KomikindoPagingSource(service, daftar = true)}
         ).flow
 
+    override fun search(s: String): Flow<PagingData<Komik>> =
+        Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                maxSize = 20,
+                enablePlaceholders = false
+            ), pagingSourceFactory = {KomikindoPagingSource(service, query = s)}
+        ).flow
+
     override fun home(): Flow<Resource<KomikindoHomeResponse>> =
         data.home()
 

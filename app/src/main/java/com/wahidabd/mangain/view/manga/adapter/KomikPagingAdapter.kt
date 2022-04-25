@@ -1,17 +1,21 @@
-package com.wahidabd.mangain.view.home.adapter
+package com.wahidabd.mangain.view.manga.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.wahidabd.mangain.data.models.Komik
 import com.wahidabd.mangain.databinding.ItemHomePopularBinding
+import com.wahidabd.mangain.utils.circularProgress
 import com.wahidabd.mangain.utils.setFlag
+import com.wahidabd.mangain.utils.setImageChapter
 
-class KomikPagingAdapter: PagingDataAdapter<Komik, KomikPagingAdapter.ViewHolder>(diffUtilCallback) {
+class KomikPagingAdapter(private val context: Context): PagingDataAdapter<Komik, KomikPagingAdapter.ViewHolder>(
+    diffUtilCallback
+) {
 
     companion object{
         val diffUtilCallback = object : DiffUtil.ItemCallback<Komik>() {
@@ -28,7 +32,7 @@ class KomikPagingAdapter: PagingDataAdapter<Komik, KomikPagingAdapter.ViewHolder
         onItemClick = listener
     }
 
-    override fun onBindViewHolder(holder: KomikPagingAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = getItem(position)
         if (currentItem != null) holder.bind(currentItem, onItemClick)
     }
@@ -36,7 +40,7 @@ class KomikPagingAdapter: PagingDataAdapter<Komik, KomikPagingAdapter.ViewHolder
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): KomikPagingAdapter.ViewHolder {
+    ): ViewHolder {
         val binding = ItemHomePopularBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
@@ -46,7 +50,10 @@ class KomikPagingAdapter: PagingDataAdapter<Komik, KomikPagingAdapter.ViewHolder
             binding.apply {
                 tvTitle.text = data.title
                 imgFlag.setFlag(data.type)
-                img.load(data.cover)
+//                img.load(data.cover)
+
+                val progress = circularProgress(context)
+                img.setImageChapter(data.cover, progress)
 
                 if (data.update_on != null) tvUpdate.text = data.update_on
                 else tvUpdate.visibility = View.GONE

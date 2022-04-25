@@ -13,7 +13,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.wahidabd.mangain.databinding.FragmentNewAnimeBinding
-import com.wahidabd.mangain.view.home.adapter.KomikPagingAdapter
+import com.wahidabd.mangain.view.manga.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikLoadStateAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +41,7 @@ class NewAnimeFragment : Fragment() {
 
         binding.imgBack.setOnClickListener { findNavController().navigateUp() }
 
-        pagingAdapter = KomikPagingAdapter()
+        pagingAdapter = KomikPagingAdapter(requireContext())
         binding.rvKomik.apply {
             adapter = pagingAdapter.withLoadStateHeaderAndFooter(
                 header = KomikLoadStateAdapter{pagingAdapter.retry()},

@@ -10,12 +10,10 @@ import com.wahidabd.mangain.data.models.ChapterDetail
 import com.wahidabd.mangain.data.models.MangaDetail
 import com.wahidabd.mangain.data.responses.ChapterResponse
 import com.wahidabd.mangain.data.responses.MangaDetailResponse
-import com.wahidabd.mangain.domain.usecase.KomikindoUseCase
+import com.wahidabd.mangain.domain.usecase.komik.KomikindoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

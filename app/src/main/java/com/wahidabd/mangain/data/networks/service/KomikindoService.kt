@@ -8,6 +8,7 @@ import com.wahidabd.mangain.utils.Constant
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface KomikindoService {
 
@@ -41,6 +42,12 @@ interface KomikindoService {
 
     @GET(Constant.KOMIKINDO_DAFTAR)
     suspend fun daftar(
+        @Path("page") page: Int
+    ): ListKomikResponse
+
+    @GET(Constant.KOMIKINDO_SEARCH)
+    suspend fun search(
+        @Query("s") s: String,
         @Path("page") page: Int
     ): ListKomikResponse
 }

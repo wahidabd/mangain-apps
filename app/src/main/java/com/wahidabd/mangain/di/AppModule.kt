@@ -4,7 +4,9 @@ import android.content.Context
 import com.wahidabd.mangain.BuildConfig
 import com.wahidabd.mangain.core.BaseRetrofitClient
 import com.wahidabd.mangain.core.SafeCall
+import com.wahidabd.mangain.data.networks.local.MyDatabase
 import com.wahidabd.mangain.data.networks.service.KomikindoService
+import com.wahidabd.mangain.data.sources.room.LocalDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +22,23 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    // Room Database
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(db: MyDatabase) = LocalDataSource(db)
+
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context) = MyDatabase.getDatabase(context)
+
+    @Provides
+    @Singleton
+    fun provideBookmarkDao(db: MyDatabase) = db.bookmarkDao()
+
+    @Provides
+    @Singleton
+    fun provideHistoryDao(db: MyDatabase) = db.historyDao()
 
     @Provides
     @Singleton

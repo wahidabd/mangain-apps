@@ -14,6 +14,7 @@ class KomikindoPagingSource @Inject constructor(
     private val manhwa: Boolean? = null,
     private val manhua: Boolean? = null,
     private val daftar: Boolean? = null,
+    private val query: String? = null
 ): PagingSource<Int, Komik>() {
 
 
@@ -30,6 +31,7 @@ class KomikindoPagingSource @Inject constructor(
                 daftar == true -> {service.daftar(position)}
                 manhua == true -> {service.manhua(position)}
                 manhwa == true -> {service.manhwa(position)}
+                query != null -> {service.search(query, position)}
                 else -> service.komik(position)
             }
 

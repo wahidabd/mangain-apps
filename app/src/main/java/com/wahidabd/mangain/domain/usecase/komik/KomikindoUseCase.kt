@@ -1,4 +1,4 @@
-package com.wahidabd.mangain.domain.usecase
+package com.wahidabd.mangain.domain.usecase.komik
 
 import androidx.paging.PagingData
 import com.wahidabd.mangain.core.Resource
@@ -14,6 +14,7 @@ interface KomikindoUseCase {
     fun manhwa(): Flow<PagingData<Komik>>
     fun manhua(): Flow<PagingData<Komik>>
     fun daftar(): Flow<PagingData<Komik>>
+    fun search(s: String): Flow<PagingData<Komik>>
 
     fun home(): Flow<Resource<KomikindoHomeResponse>>
     fun detail(id: String): Flow<Resource<MangaDetailResponse>>

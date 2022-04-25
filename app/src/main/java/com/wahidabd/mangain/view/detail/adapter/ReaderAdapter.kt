@@ -1,5 +1,6 @@
 package com.wahidabd.mangain.view.detail.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -8,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.wahidabd.mangain.data.models.DataChapterDetail
 import com.wahidabd.mangain.databinding.ItemReaderBinding
+import com.wahidabd.mangain.utils.circularProgress
 import com.wahidabd.mangain.utils.setImageChapter
 
-class ReaderAdapter : RecyclerView.Adapter<ReaderAdapter.ViewHolder>() {
+class ReaderAdapter(private val context: Context) : RecyclerView.Adapter<ReaderAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<DataChapterDetail>() {
         override fun areItemsTheSame(oldItem: DataChapterDetail, newItem: DataChapterDetail): Boolean =
@@ -41,7 +43,10 @@ class ReaderAdapter : RecyclerView.Adapter<ReaderAdapter.ViewHolder>() {
         fun bind(data: DataChapterDetail){
 //            binding.img.load(data)
             binding.tvNum.text = data.num.toString()
-            binding.img.load(data.img)
+
+            val progress = circularProgress(context)
+            binding.img.setImageChapter(data.img, progress)
+//            binding.img.load(data.img)
 
         }
     }

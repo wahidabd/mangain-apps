@@ -12,14 +12,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import com.wahidabd.mangain.R
 import com.wahidabd.mangain.databinding.FragmentKomikBinding
-import com.wahidabd.mangain.view.home.NewAnimeFragmentDirections
-import com.wahidabd.mangain.view.home.adapter.KomikPagingAdapter
+import com.wahidabd.mangain.view.manga.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikLoadStateAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
 
 @AndroidEntryPoint
 class KomikFragment : Fragment() {
@@ -42,7 +41,7 @@ class KomikFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        pagingAdapter = KomikPagingAdapter()
+        pagingAdapter = KomikPagingAdapter(requireContext())
         binding.rvKomik.apply {
             adapter = pagingAdapter.withLoadStateHeaderAndFooter(
                 header = KomikLoadStateAdapter{pagingAdapter.retry()},
@@ -63,6 +62,16 @@ class KomikFragment : Fragment() {
                 pagingAdapter.submitData(it)
             }
         }
+
+        viewModel.query.observe(viewLifecycleOwner){ s ->
+            Timber.d("Query -> $s")
+            lifecycleScope.launchWhenCreated {
+                viewModel.search(s).collectLatest {
+                    pagingAdapter.submitData(it)
+                }
+            }
+        }
+
     }
 
     private fun onClick(id: String){

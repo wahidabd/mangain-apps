@@ -1,4 +1,4 @@
-package com.wahidabd.mangain.domain.usecase
+package com.wahidabd.mangain.domain.usecase.komik
 
 import androidx.paging.PagingData
 import com.wahidabd.mangain.core.Resource
@@ -10,7 +10,8 @@ import com.wahidabd.mangain.domain.repository.KomikindoRepositoryImpl
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class KomikindoInteractor @Inject constructor(private val repo: KomikindoRepositoryImpl): KomikindoUseCase {
+class KomikindoInteractor @Inject constructor(private val repo: KomikindoRepositoryImpl):
+    KomikindoUseCase {
     override fun komik(): Flow<PagingData<Komik>> =
         repo.komik()
 
@@ -22,6 +23,9 @@ class KomikindoInteractor @Inject constructor(private val repo: KomikindoReposit
 
     override fun daftar(): Flow<PagingData<Komik>> =
         repo.daftar()
+
+    override fun search(s: String): Flow<PagingData<Komik>> =
+        repo.search(s)
 
     override fun home(): Flow<Resource<KomikindoHomeResponse>> =
         repo.home()

@@ -35,7 +35,7 @@
             android:textSize="14sp"
             android:textColorHint="@color/grey_placeholder"
             android:paddingHorizontal="8dp"
-            android:background="@drawable/ripple_rectangle_soft_dark"/>
+            android:background="@drawable/bg_round_soft_dark"/>
 
     </LinearLayout>
 
@@ -43,6 +43,7 @@
         android:id="@+id/rv_chapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         tools:listitem="@layout/item_chapter"/>
 
 </LinearLayout>

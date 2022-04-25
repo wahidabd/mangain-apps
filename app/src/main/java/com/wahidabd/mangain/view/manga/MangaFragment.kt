@@ -5,18 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
-import com.wahidabd.mangain.R
 import com.wahidabd.mangain.databinding.FragmentMangaBinding
-import com.wahidabd.mangain.view.home.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikPagerAdapter
+import com.wahidabd.mangain.viewmodel.KomikViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MangaFragment : Fragment() {
 
     private var _binding: FragmentMangaBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: KomikViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +40,10 @@ class MangaFragment : Fragment() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager){t, p ->
             t.text = tab[p]
         }.attach()
+
+        binding.edtSearch.doAfterTextChanged {
+            viewModel.query(it.toString())
+        }
     }
 
 }

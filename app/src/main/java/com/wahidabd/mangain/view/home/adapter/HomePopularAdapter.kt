@@ -1,6 +1,8 @@
 package com.wahidabd.mangain.view.home.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.wahidabd.mangain.data.models.PopularDay
 import com.wahidabd.mangain.databinding.ItemHomePopularBinding
+import com.wahidabd.mangain.utils.circularProgress
 import com.wahidabd.mangain.utils.setFlag
+import com.wahidabd.mangain.utils.setImageChapter
 
 class HomePopularAdapter : RecyclerView.Adapter<HomePopularAdapter.ViewHolder>() {
 
@@ -50,6 +54,8 @@ class HomePopularAdapter : RecyclerView.Adapter<HomePopularAdapter.ViewHolder>()
                 imgFlag.setFlag(data.type)
                 tvUpdate.text = data.update_on
                 img.load(data.cover)
+
+                binding.imageView2.visibility = View.GONE
 
                 rootView.setOnClickListener {
                     onItemClick?.let { onItemClick(data.id) }

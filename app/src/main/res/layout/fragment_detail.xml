@@ -41,7 +41,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/bg_item"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
                 app:tint="@color/white" />
 
             <ImageView
-                android:id="@+id/iv_favorite"
+                android:id="@+id/iv_bookmark"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="16dp"
@@ -90,14 +90,14 @@
                     android:layout_height="22sp"
                     android:layout_marginEnd="2dp"
                     android:src="@drawable/ic_star_fill"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/soft_dark_blue" />
 
                 <TextView
                     android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-                    android:textColor="@color/white"
+                    android:textColor="@color/soft_dark_blue"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     tools:text="9.8" />
@@ -108,14 +108,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="2dp"
                     android:src="@drawable/ic_votes"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/soft_dark_blue" />
 
                 <TextView
                     android:id="@+id/tv_votes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-                    android:textColor="@color/white"
+                    android:textColor="@color/soft_dark_blue"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     tools:text="3 Ribu Orang" />
@@ -294,32 +294,20 @@
 
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="@font/poppins"
-                        android:text="Genre"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/tv_name_genre"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        tools:text="Action Adventure" />
-
-                </TableRow>
-
             </TableLayout>
+
+            <TextView
+                android:id="@+id/tv_name_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/tableLayout"
+                app:layout_constraintStart_toStartOf="@+id/tableLayout"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+                tools:text="Action Adventure" />
 
             <kr.co.prnd.readmore.ReadMoreTextView
                 android:id="@+id/tv_synopsis"
@@ -331,9 +319,9 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                app:readMoreColor="@color/colorPrimaryDark"
                 app:readMoreMaxLine="4"
                 app:readMoreText=" selengkapnya..."
-                app:readMoreColor="@color/colorPrimaryDark"
                 tools:text="Synopsis" />
 
             <LinearLayout
@@ -375,13 +363,13 @@
                     android:id="@+id/tv_show_all"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ripple_rectangle_soft_dark"
                     android:fontFamily="@font/poppins"
                     android:gravity="center_horizontal"
                     android:paddingVertical="8dp"
                     android:text="Lihat Semua"
-                    android:layout_marginTop="10dp"
                     android:textColor="@color/white"
-                    android:background="@drawable/ripple_rectangle_soft_dark"
                     android:textSize="14sp" />
 
             </LinearLayout>
