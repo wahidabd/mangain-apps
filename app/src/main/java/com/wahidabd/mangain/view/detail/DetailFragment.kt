@@ -103,6 +103,7 @@ class DetailFragment : Fragment() {
                 binding.tvNameGenre.text = ""
                 data.genres.forEach { i -> tvNameGenre.append("\u2022 ${i.title}  ") }
 
+                dataChapter.clear()
                 chapterAdapter.setData = data.eps
                 dataChapter.addAll(data.eps)
 

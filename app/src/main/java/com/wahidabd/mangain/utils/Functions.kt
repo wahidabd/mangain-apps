@@ -16,12 +16,6 @@ fun ImageView.setImageChapter(image: String){
         .into(this)
 }
 
-fun ImageView.setImageGlide(image: String){
-    GlideApp.with(this)
-        .load(image)
-        .override(Target.SIZE_ORIGINAL)
-        .into(this)
-}
 
 fun Fragment.quickShowToast(msg: String){
     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()

@@ -46,11 +46,11 @@ class ReaderFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = true
-            viewModel.reader(args.id)
-            subscribe()
-        }
+//        binding.swipeRefresh.setOnRefreshListener {
+//            binding.swipeRefresh.isRefreshing = true
+//            viewModel.reader(args.id)
+//            subscribe()
+//        }
 
         viewModel.reader(args.id)
         subscribe()
@@ -60,12 +60,12 @@ class ReaderFragment : Fragment() {
         viewModel.readerResource.observe(viewLifecycleOwner){
             when(it.status){
                 Status.LOADING -> {
-                    binding.progressCircular.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                     binding.rvReader.visibility = View.GONE
                 }
 
                 Status.ERROR -> {
-                    binding.progressCircular.visibility = View.GONE
+//                    binding.progressCircular.visibility = View.GONE
                     quickShowToast(it.message.toString())
                 }
                 else -> {}
@@ -76,9 +76,9 @@ class ReaderFragment : Fragment() {
             binding.tvTitle.text = it.title
             readerAdapter.setData = it.data
 
-            binding.progressCircular.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
             binding.rvReader.visibility = View.VISIBLE
-            binding.swipeRefresh.isRefreshing = false
+//            binding.swipeRefresh.isRefreshing = false
         }
     }
 

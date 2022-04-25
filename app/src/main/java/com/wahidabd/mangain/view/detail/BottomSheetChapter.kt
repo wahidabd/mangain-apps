@@ -1,10 +1,10 @@
 package com.wahidabd.mangain.view.detail
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,11 +12,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wahidabd.mangain.data.models.Chapter
 import com.wahidabd.mangain.databinding.BottomSheetChpaterBinding
 import com.wahidabd.mangain.view.detail.adapter.ChapterBottomSheetAdapter
+import java.util.*
 
 class BottomSheetChapter(val data: List<Chapter>) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetChpaterBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var mAdapter: ChapterBottomSheetAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = BottomSheetChpaterBinding.inflate(inflater, container, false)
@@ -26,7 +29,7 @@ class BottomSheetChapter(val data: List<Chapter>) : BottomSheetDialogFragment() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mAdapter = ChapterBottomSheetAdapter()
+        mAdapter = ChapterBottomSheetAdapter()
         mAdapter.setData = data
 
         binding.rvChapter.apply {
@@ -37,9 +40,25 @@ class BottomSheetChapter(val data: List<Chapter>) : BottomSheetDialogFragment() 
 
         mAdapter.setOnItemClicked(::navigate)
 
+        binding.edtSearch.doAfterTextChanged {
+            search(it.toString())
+        }
+
         binding.imgClose.setOnClickListener {
             dialog?.dismiss()
         }
+    }
+
+    private fun search(q: String){
+        val filtered = ArrayList<Chapter>()
+
+        data.forEach {
+            if (it.title.lowercase(Locale.ROOT).contains(q.lowercase(Locale.ROOT))){
+                filtered.add(it)
+            }
+        }
+
+        mAdapter.setData = filtered
     }
 
     private fun navigate(id: String){

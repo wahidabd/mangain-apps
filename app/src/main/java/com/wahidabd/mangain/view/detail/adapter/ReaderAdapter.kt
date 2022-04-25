@@ -41,7 +41,7 @@ class ReaderAdapter : RecyclerView.Adapter<ReaderAdapter.ViewHolder>() {
         fun bind(data: DataChapterDetail){
 //            binding.img.load(data)
             binding.tvNum.text = data.num.toString()
-            binding.img.setImageChapter(data.img)
+            binding.img.load(data.img)
 
         }
     }

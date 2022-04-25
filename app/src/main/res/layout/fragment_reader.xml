@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<RelativeLayout
     android:id="@+id/swipe_refresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,55 +9,70 @@
     android:orientation="vertical"
     tools:context=".view.detail.ReaderFragment">
 
-    <RelativeLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/progress_circular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/colorPrimaryDark"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="300dp"/>
-
-        <LinearLayout
-            android:id="@+id/ll_top"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:elevation="6dp"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="6dp">
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
 
-            <ImageView
-                android:id="@+id/img_back"
-                android:layout_width="32dp"
-                android:layout_height="32sp"
-                android:padding="4dp"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@color/white"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="0dp"
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways">
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="One Piece Chapter 12002"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/white"
-                android:layout_marginStart="10dp"
-                android:layout_gravity="center_vertical"/>
+                <LinearLayout
+                    android:id="@+id/ll_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="32dp"
+                        android:layout_height="32sp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_arrow_back"
+                        app:tint="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="One Piece Chapter 12002"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_reader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_reader"
-            android:layout_below="@id/ll_top"/>
-    </RelativeLayout>
+            android:layout_gravity="center"
+            android:fitsSystemWindows="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"/>
+
+</RelativeLayout>

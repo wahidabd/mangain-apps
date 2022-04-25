@@ -321,7 +321,7 @@
 
             </TableLayout>
 
-            <TextView
+            <kr.co.prnd.readmore.ReadMoreTextView
                 android:id="@+id/tv_synopsis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -331,6 +331,9 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                app:readMoreMaxLine="4"
+                app:readMoreText=" selengkapnya..."
+                app:readMoreColor="@color/colorPrimaryDark"
                 tools:text="Synopsis" />
 
             <LinearLayout
