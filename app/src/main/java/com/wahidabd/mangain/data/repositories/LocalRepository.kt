@@ -20,4 +20,6 @@ class LocalRepository @Inject constructor(
     override fun getHistoryById(id: String?): Flow<HistoryData> = database.getHistoryById(id)
     override fun insertHistory(data: HistoryData) = database.insertHistory(data)
     override fun deleteHistory(id: String?) = database.deleteHistory(id)
+    override fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = database.updateHistory(id, id_chapter, chapter)
+    override fun autoDelete() = database.autoDelete()
 }

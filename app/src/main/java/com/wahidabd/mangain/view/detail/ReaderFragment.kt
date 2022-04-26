@@ -1,5 +1,6 @@
 package com.wahidabd.mangain.view.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,15 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wahidabd.mangain.core.Status
+import com.wahidabd.mangain.data.models.room.HistoryData
 import com.wahidabd.mangain.databinding.FragmentReaderBinding
 import com.wahidabd.mangain.utils.quickShowToast
 import com.wahidabd.mangain.view.detail.adapter.ReaderAdapter
 import com.wahidabd.mangain.viewmodel.DetailMangaViewModel
+import com.wahidabd.mangain.viewmodel.LocalViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import java.time.LocalDateTime
 
 @AndroidEntryPoint
 class ReaderFragment : Fragment() {
@@ -24,6 +29,7 @@ class ReaderFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: DetailMangaViewModel by viewModels()
+    private val localViewModel: LocalViewModel by viewModels()
     private val args: ReaderFragmentArgs by navArgs()
 
     private lateinit var readerAdapter: ReaderAdapter
@@ -66,6 +72,7 @@ class ReaderFragment : Fragment() {
         subscribe()
     }
 
+    @SuppressLint("NewApi")
     private fun subscribe(){
         viewModel.readerResource.observe(viewLifecycleOwner){
             when(it.status){
@@ -89,13 +96,24 @@ class ReaderFragment : Fragment() {
             binding.btnNext.isEnabled = it.next != null
             binding.btnPrev.isEnabled = it.prev != null
 
+            val historyData = HistoryData(
+                id = args.idKomik,
+                id_chapter = args.id,
+                title = args.titleKomik,
+                cover = args.cover,
+                chapter = it.title.replace(args.titleKomik, "").trim(),
+                updated_at = LocalDateTime.now().toString()
+            )
+
+            checkHistory(historyData)
+
             binding.btnNext.setOnClickListener { _ ->
-                val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.next!!)
+                val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.next!!, args.idKomik, args.titleKomik, args.cover)
                 findNavController().navigate(action)
             }
 
             binding.btnPrev.setOnClickListener { _ ->
-                val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.prev!!)
+                val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.prev!!, args.idKomik, args.titleKomik, args.cover)
                 findNavController().navigate(action)
             }
 
@@ -104,4 +122,17 @@ class ReaderFragment : Fragment() {
         }
     }
 
+    private fun checkHistory(data: HistoryData){
+        localViewModel.historyById(args.id).observe(viewLifecycleOwner) { res ->
+            val status = res != null
+
+            if (status){
+                localViewModel.updateHistory(data.id, data.id_chapter, data.chapter)
+                Timber.e("UPDATE HISTORY")
+            }else{
+                localViewModel.insertHistory(data)
+                Timber.e("INSERT HISTORY")
+            }
+        }
+    }
 }

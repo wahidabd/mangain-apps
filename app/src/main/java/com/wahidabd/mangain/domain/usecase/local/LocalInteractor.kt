@@ -18,4 +18,6 @@ class LocalInteractor @Inject constructor(
     override fun getHistoryById(id: String?): Flow<HistoryData> = repo.getHistoryById(id)
     override fun insertHistory(data: HistoryData) = repo.insertHistory(data)
     override fun deleteHistory(id: String?) = repo.deleteHistory(id)
+    override fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = repo.updateHistory(id, id_chapter, chapter)
+    override fun autoDelete() = repo.autoDelete()
 }

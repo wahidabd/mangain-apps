@@ -14,4 +14,6 @@ interface LocalRepositoryImpl {
     fun getHistoryById(id: String?): Flow<HistoryData>
     fun insertHistory(data: HistoryData)
     fun deleteHistory(id: String?)
+    fun updateHistory(id: String?, id_chapter: String?, chapter: String?)
+    fun autoDelete()
 }

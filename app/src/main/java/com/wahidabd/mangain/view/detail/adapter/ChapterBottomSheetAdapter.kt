@@ -24,8 +24,8 @@ class ChapterBottomSheetAdapter : RecyclerView.Adapter<ChapterBottomSheetAdapter
         get() = listDiffer.currentList
         set(value) = listDiffer.submitList(value)
 
-    private var onItemClick: ((String) -> Unit)? = null
-    fun setOnItemClicked(listener: (String) -> Unit){onItemClick = listener}
+    private var onItemClick: ((Chapter) -> Unit)? = null
+    fun setOnItemClicked(listener: (Chapter) -> Unit){onItemClick = listener}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemChapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -39,12 +39,12 @@ class ChapterBottomSheetAdapter : RecyclerView.Adapter<ChapterBottomSheetAdapter
     override fun getItemCount(): Int = setData.size
 
     inner class ViewHolder(private val binding: ItemChapterBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data: Chapter, onItemClick: ((String) -> Unit)?){
+        fun bind(data: Chapter, onItemClick: ((Chapter) -> Unit)?){
             binding.apply {
                 tvTitle.text = data.title
 
                 rootView.setOnClickListener {
-                    onItemClick?.let { onItemClick(data.id) }
+                    onItemClick?.let { onItemClick(data) }
                 }
             }
         }

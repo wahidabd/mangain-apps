@@ -12,7 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahidabd.mangain.databinding.FragmentNewAnimeBinding
+import com.wahidabd.mangain.view.home.adapter.NewUpdatePagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikLoadStateAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
@@ -25,7 +27,7 @@ class NewAnimeFragment : Fragment() {
     private var _binding: FragmentNewAnimeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var pagingAdapter: KomikPagingAdapter
+    private lateinit var pagingAdapter: NewUpdatePagingAdapter
     private val viewModel: KomikViewModel by viewModels()
 
     override fun onCreateView(
@@ -41,13 +43,13 @@ class NewAnimeFragment : Fragment() {
 
         binding.imgBack.setOnClickListener { findNavController().navigateUp() }
 
-        pagingAdapter = KomikPagingAdapter(requireContext())
+        pagingAdapter = NewUpdatePagingAdapter(requireContext())
         binding.rvKomik.apply {
             adapter = pagingAdapter.withLoadStateHeaderAndFooter(
                 header = KomikLoadStateAdapter{pagingAdapter.retry()},
                 footer = KomikLoadStateAdapter{pagingAdapter.retry()}
             )
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
         }
 

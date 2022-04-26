@@ -17,5 +17,6 @@ class LocalDataSource @Inject constructor(private val database: MyDatabase) {
     fun getHistoryById(id: String?) = database.historyDao().getHistoryById(id)
     fun insertHistory(data: HistoryData) = database.historyDao().insertHistory(data)
     fun deleteHistory(id: String?) = database.historyDao().deleteHistoryById(id)
-
+    fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = database.historyDao().updateChapter(id, id_chapter, chapter)
+    fun autoDelete() = database.historyDao().autoDelete()
 }

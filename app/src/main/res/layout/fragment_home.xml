@@ -86,6 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="6dp"
+                        android:layout_marginHorizontal="12dp"
                         tools:itemCount="1"
                         tools:listitem="@layout/item_home_popular" />
 
@@ -124,6 +125,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:itemCount="1"
+                        android:layout_marginHorizontal="12dp"
                         tools:listitem="@layout/item_popular"/>
 
                     <View
@@ -170,7 +172,7 @@
                         android:layout_height="wrap_content"
                         tools:listitem="@layout/item_home_new"
                         tools:itemCount="1"
-                        android:layout_marginHorizontal="10dp"/>
+                        android:layout_marginHorizontal="12dp"/>
 
                     <TextView
                         android:id="@+id/tv_show_all"

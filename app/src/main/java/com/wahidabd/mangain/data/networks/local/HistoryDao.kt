@@ -15,7 +15,7 @@ interface HistoryDao {
     @Query("SELECT * FROM history_entity WHERE id = :id")
     fun getHistoryById(id: String?): Flow<HistoryData>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHistory(data: HistoryData)
 
     @Query("UPDATE history_entity SET id_chapter = :id_chapter AND chapter = :chapter WHERE id = :id")
@@ -24,6 +24,6 @@ interface HistoryDao {
     @Query("DELETE FROM history_entity WHERE id = :id")
     fun deleteHistoryById(id: String?)
 
-    @Query("DELETE FROM history_entity WHERE id = :id NOT IN (SELECT id FROM history_entity ORDER BY updated_at LIMIT 100)")
+    @Query("DELETE FROM history_entity WHERE id NOT IN (SELECT id FROM history_entity ORDER BY updated_at LIMIT 100)")
     fun autoDelete()
 }

@@ -42,6 +42,8 @@ class DetailFragment : Fragment() {
 
     private var status: Boolean? = null
     private var bookmarkData = BookmarkData("")
+    private var cover =""
+    private var titleKomik = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
@@ -67,12 +69,12 @@ class DetailFragment : Fragment() {
         }
 
         chapterAdapter.setOnItemClicked {
-            val action = DetailFragmentDirections.actionDetailFragmentToReaderFragment(it.id)
+            val action = DetailFragmentDirections.actionDetailFragmentToReaderFragment(it.id, args.id, titleKomik, cover)
             findNavController().navigate(action)
         }
 
         binding.tvShowAll.setOnClickListener {
-            BottomSheetChapter(dataChapter).show(parentFragmentManager, "TAG")
+            BottomSheetChapter(dataChapter, args.id, titleKomik, cover).show(parentFragmentManager, "TAG")
         }
 
         binding.ivBookmark.setOnClickListener {
@@ -121,6 +123,9 @@ class DetailFragment : Fragment() {
                 dataChapter.clear()
                 chapterAdapter.setData = data.eps
                 dataChapter.addAll(data.eps)
+
+                cover = data.cover
+                titleKomik = data.title
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     bookmarkData = BookmarkData(

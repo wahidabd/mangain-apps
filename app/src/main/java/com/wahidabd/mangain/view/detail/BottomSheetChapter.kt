@@ -14,7 +14,12 @@ import com.wahidabd.mangain.databinding.BottomSheetChpaterBinding
 import com.wahidabd.mangain.view.detail.adapter.ChapterBottomSheetAdapter
 import java.util.*
 
-class BottomSheetChapter(val data: List<Chapter>) : BottomSheetDialogFragment() {
+class BottomSheetChapter(
+    private val data: List<Chapter>,
+    private val idKomik: String,
+    private val titleKomik: String,
+    private val cover: String
+) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetChpaterBinding? = null
     private val binding get() = _binding!!
@@ -38,7 +43,11 @@ class BottomSheetChapter(val data: List<Chapter>) : BottomSheetDialogFragment() 
             itemAnimator = DefaultItemAnimator()
         }
 
-        mAdapter.setOnItemClicked(::navigate)
+        mAdapter.setOnItemClicked{
+            dialog?.dismiss()
+            val action = DetailFragmentDirections.actionDetailFragmentToReaderFragment(it.id, idKomik, it.title, cover)
+            findNavController().navigate(action)
+        }
 
         binding.edtSearch.doAfterTextChanged {
             search(it.toString())
@@ -59,12 +68,6 @@ class BottomSheetChapter(val data: List<Chapter>) : BottomSheetDialogFragment() 
         }
 
         mAdapter.setData = filtered
-    }
-
-    private fun navigate(id: String){
-        dialog?.dismiss()
-        val action = DetailFragmentDirections.actionDetailFragmentToReaderFragment(id)
-        findNavController().navigate(action)
     }
 
 }

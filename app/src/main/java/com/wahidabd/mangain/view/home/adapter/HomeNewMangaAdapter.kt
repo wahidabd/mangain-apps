@@ -1,6 +1,5 @@
 package com.wahidabd.mangain.view.home.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -8,12 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.wahidabd.mangain.data.models.NewManga
-import com.wahidabd.mangain.data.models.PopularDay
 import com.wahidabd.mangain.databinding.ItemHomeNewBinding
-import com.wahidabd.mangain.databinding.ItemHomePopularBinding
-import com.wahidabd.mangain.utils.circularProgress
 import com.wahidabd.mangain.utils.setFlag
-import com.wahidabd.mangain.utils.setImageChapter
 
 class HomeNewMangaAdapter : RecyclerView.Adapter<HomeNewMangaAdapter.ViewHolder>() {
 

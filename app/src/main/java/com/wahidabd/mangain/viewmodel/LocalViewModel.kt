@@ -23,5 +23,6 @@ class LocalViewModel @Inject constructor(
     fun historyById(id: String?): LiveData<HistoryData> = useCase.getHistoryById(id).asLiveData()
     fun insertHistory(data: HistoryData) = useCase.insertHistory(data)
     fun deleteHistory(id: String?)= useCase.deleteHistory(id)
-
+    fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = useCase.updateHistory(id, id_chapter, chapter)
+    val autoDelete = useCase.autoDelete()
 }

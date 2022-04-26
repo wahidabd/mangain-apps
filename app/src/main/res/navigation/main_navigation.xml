@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_bookmarkFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_readerFragment"
+            app:destination="@id/readerFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -64,6 +67,14 @@
             android:id="@+id/action_readerFragment_self"
             app:destination="@id/readerFragment"
             app:popUpTo="@id/detailFragment" />
+        <argument
+            android:name="id_komik"
+            app:argType="string" />
+        <argument android:name="title_komik"
+            app:argType="string" />
+        <argument
+            android:name="cover"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/newAnimeFragment"
