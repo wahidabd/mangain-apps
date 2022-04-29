@@ -90,7 +90,7 @@ class ReaderFragment : Fragment() {
         }
 
         viewModel.reader.observe(viewLifecycleOwner){
-            binding.tvTitle.text = it.title
+            binding.tvTitle.text = it.title!!
             readerAdapter.setData = it.data
 
             binding.btnNext.isEnabled = it.next != null

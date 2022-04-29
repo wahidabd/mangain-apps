@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_top"
+        android:layout_marginHorizontal="12dp"
         tools:listitem="@layout/item_home_popular" />
 
 </RelativeLayout>

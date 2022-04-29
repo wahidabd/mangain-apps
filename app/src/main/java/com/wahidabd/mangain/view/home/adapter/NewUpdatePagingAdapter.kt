@@ -54,6 +54,10 @@ class NewUpdatePagingAdapter(private val context: Context) : PagingDataAdapter<K
                 val progress = circularProgress(context)
                 imgFlag.setFlag(data.type)
                 imgCover.setImageChapter(data.cover, progress)
+
+                rootView.setOnClickListener {
+                    onItemClick?.let { onItemClick(data.id) }
+                }
             }
         }
     }

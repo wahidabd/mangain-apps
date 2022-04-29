@@ -19,6 +19,7 @@ class KomikViewModel @Inject constructor(private val useCase: KomikindoUseCase):
     val daftar = useCase.daftar().distinctUntilChanged().cachedIn(viewModelScope)
     val manhwa = useCase.manhwa().distinctUntilChanged().cachedIn(viewModelScope)
     val manhua = useCase.manhua().distinctUntilChanged().cachedIn(viewModelScope)
+
     fun search(s: String): Flow<PagingData<Komik>> =
         useCase.search(s).distinctUntilChanged().cachedIn(viewModelScope)
 

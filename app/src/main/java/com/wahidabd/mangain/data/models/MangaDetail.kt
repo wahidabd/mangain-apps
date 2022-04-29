@@ -2,8 +2,8 @@ package com.wahidabd.mangain.data.models
 
 data class MangaDetail(
     val title: String,
-    val banner: String,
-    val cover: String,
+    val banner: String? = null,
+    val cover: String? = null,
     val status: String,
     val author: String,
     val ilustrator: String,

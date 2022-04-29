@@ -24,7 +24,7 @@ class BookmarkFragment : Fragment() {
         val pagerAdapter = BookmarkPagerAdapter(requireParentFragment())
         binding.viewPager.adapter = pagerAdapter
 
-        val tab = listOf("Bookmark", "History")
+        val tab = listOf("Favorite", "History")
         TabLayoutMediator(binding.tabLayout, binding.viewPager){t, p ->
             t.text = tab[p]
         }.attach()

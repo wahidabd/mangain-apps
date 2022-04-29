@@ -13,6 +13,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.wahidabd.mangain.databinding.FragmentKomikBinding
+import com.wahidabd.mangain.utils.Constant
 import com.wahidabd.mangain.view.manga.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikLoadStateAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
@@ -40,6 +41,7 @@ class KomikFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Timber.e("QUERY ${Constant.QUERY_SEARCH}")
 
         pagingAdapter = KomikPagingAdapter(requireContext())
         binding.rvKomik.apply {
@@ -62,16 +64,6 @@ class KomikFragment : Fragment() {
                 pagingAdapter.submitData(it)
             }
         }
-
-        viewModel.query.observe(viewLifecycleOwner){ s ->
-            Timber.d("Query -> $s")
-            lifecycleScope.launchWhenCreated {
-                viewModel.search(s).collectLatest {
-                    pagingAdapter.submitData(it)
-                }
-            }
-        }
-
     }
 
     private fun onClick(id: String){

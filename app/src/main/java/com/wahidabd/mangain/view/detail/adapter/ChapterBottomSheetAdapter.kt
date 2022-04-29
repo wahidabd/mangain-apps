@@ -42,6 +42,7 @@ class ChapterBottomSheetAdapter : RecyclerView.Adapter<ChapterBottomSheetAdapter
         fun bind(data: Chapter, onItemClick: ((Chapter) -> Unit)?){
             binding.apply {
                 tvTitle.text = data.title
+                tvUpdate.text = data.upload_on
 
                 rootView.setOnClickListener {
                     onItemClick?.let { onItemClick(data) }

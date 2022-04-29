@@ -106,8 +106,10 @@ class DetailFragment : Fragment() {
 
         viewModel.result.observe(viewLifecycleOwner){ data ->
             binding.apply {
-                imageView.load(data.banner)
-                imgItemPhoto.load(data.cover)
+                if(data.cover != null){
+                    imageView.load(data.banner)
+                    imgItemPhoto.load(data.cover)
+                }
                 tvTitle.text = data.title
                 tvAuthor.text = ": " + data.author
                 tvIllust.text = ": " + data.ilustrator
@@ -124,7 +126,7 @@ class DetailFragment : Fragment() {
                 chapterAdapter.setData = data.eps
                 dataChapter.addAll(data.eps)
 
-                cover = data.cover
+                cover = data.cover!!
                 titleKomik = data.title
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

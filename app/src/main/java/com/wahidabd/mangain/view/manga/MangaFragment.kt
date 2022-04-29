@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wahidabd.mangain.databinding.FragmentMangaBinding
+import com.wahidabd.mangain.utils.Constant
 import com.wahidabd.mangain.view.manga.adapter.KomikPagerAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,8 +43,8 @@ class MangaFragment : Fragment() {
             t.text = tab[p]
         }.attach()
 
-        binding.edtSearch.doAfterTextChanged {
-            viewModel.query(it.toString())
+        binding.edtSearch.doOnTextChanged { text, _, _, _ ->
+            Constant.QUERY_SEARCH = text.toString()
         }
     }
 
