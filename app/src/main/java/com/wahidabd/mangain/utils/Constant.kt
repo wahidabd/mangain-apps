@@ -25,7 +25,7 @@ object Constant {
     const val KOMIKINDO_MANHWA = "komikindo-manhwa/{page}"
     const val KOMIKINDO_MANHUA = "komikindo-manhua/{page}"
     const val KOMIKINDO_KOMIK = "komikindo-komik/{page}"
-    const val KOMIKINDO_SEARCH = "komikindo-komik/{s}/page/{page}"
+    const val KOMIKINDO_SEARCH = "komikindo-search/{s}/page/{page}"
 
 
     // depend manga manhua manhwa

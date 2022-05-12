@@ -47,7 +47,7 @@ interface KomikindoService {
 
     @GET(Constant.KOMIKINDO_SEARCH)
     suspend fun search(
-        @Query("s") s: String,
+        @Path("s") s: String,
         @Path("page") page: Int
     ): ListKomikResponse
 }

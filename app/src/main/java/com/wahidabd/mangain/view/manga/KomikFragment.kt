@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import com.wahidabd.mangain.utils.Constant
 import com.wahidabd.mangain.view.manga.adapter.KomikPagingAdapter
 import com.wahidabd.mangain.view.manga.adapter.KomikLoadStateAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
+import com.wahidabd.mangain.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
@@ -29,6 +31,7 @@ class KomikFragment : Fragment() {
 
     private lateinit var pagingAdapter: KomikPagingAdapter
     private val viewModel: KomikViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +43,6 @@ class KomikFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Timber.e("QUERY ${Constant.QUERY_SEARCH}")
 
         pagingAdapter = KomikPagingAdapter(requireContext())
         binding.rvKomik.apply {
@@ -62,6 +63,15 @@ class KomikFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.daftar.collectLatest {
                 pagingAdapter.submitData(it)
+            }
+        }
+
+        searchViewModel.query.observe(viewLifecycleOwner){ query ->
+            lifecycleScope.launchWhenCreated {
+                viewModel.search(query).collectLatest {
+                    pagingAdapter.submitData(it)
+//                    Timber.d("DATA $it")
+                }
             }
         }
     }

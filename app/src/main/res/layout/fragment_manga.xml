@@ -33,6 +33,7 @@
                     android:paddingHorizontal="8dp"
                     android:fontFamily="@font/poppins"
                     android:textSize="14sp"
+                    android:maxLines="1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/grey_placeholder"
                     android:background="@null"/>

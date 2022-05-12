@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wahidabd.mangain.databinding.FragmentMangaBinding
 import com.wahidabd.mangain.utils.Constant
 import com.wahidabd.mangain.view.manga.adapter.KomikPagerAdapter
 import com.wahidabd.mangain.viewmodel.KomikViewModel
+import com.wahidabd.mangain.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -23,6 +25,7 @@ class MangaFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: KomikViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +47,7 @@ class MangaFragment : Fragment() {
         }.attach()
 
         binding.edtSearch.doOnTextChanged { text, _, _, _ ->
-            Constant.QUERY_SEARCH = text.toString()
+            searchViewModel.updateQuery(text.toString())
         }
     }
 
