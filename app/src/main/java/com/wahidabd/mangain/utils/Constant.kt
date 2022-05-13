@@ -34,5 +34,5 @@ object Constant {
     const val MANHUA = "Manhua"
 
     const val STARTING_PAGE_INDEX = 1
-    var QUERY_SEARCH = ""
+    const val BUG_REPORT = "bug_report"
 }

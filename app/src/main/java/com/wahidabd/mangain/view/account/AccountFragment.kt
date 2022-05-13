@@ -3,13 +3,13 @@ package com.wahidabd.mangain.view.account
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.wahidabd.mangain.R
 import com.wahidabd.mangain.databinding.FragmentAccountBinding
 import com.wahidabd.mangain.utils.MySharedPreference
 import com.wahidabd.mangain.utils.circularProgress
@@ -18,7 +18,6 @@ import com.wahidabd.mangain.utils.setImageChapter
 import com.wahidabd.mangain.view.splash.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
-import java.lang.Exception
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -52,16 +51,30 @@ class AccountFragment : Fragment() {
         binding.linearClearCache.setOnClickListener { clearCache(requireContext()) }
         binding.ivLogout.setOnClickListener { logout() }
 
+        binding.linearBugAndReport.setOnClickListener {
+            val action = AccountFragmentDirections.actionAccountFragmentToBugReportFragment(pref.email, pref.name)
+            findNavController().navigate(action)
+        }
     }
 
     private fun clearCache(context: Context){
-        try {
-            val file: File = context.cacheDir
-            deleteDir(file)
-            quickShowToast("Cache Cleared")
-        }catch (e: Exception){
-            quickShowToast(e.toString())
-        }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Hapus Cache Aplikasi?")
+            .setMessage("Menghapus cache aplikasi dapat mengurangi jumlah penyimpanan pada smartphone mu-^")
+            .setPositiveButton("Hapus"){_, _ ->
+                try {
+                    val file: File = context.cacheDir
+                    deleteDir(file)
+                    quickShowToast("Cache Cleared")
+                }catch (e: Exception){
+                    quickShowToast(e.toString())
+                }
+            }
+            .setNegativeButton("Batal"){d, _ ->
+                d.dismiss()
+            }
+            .show()
     }
 
     private fun deleteDir(dir: File?): Boolean{

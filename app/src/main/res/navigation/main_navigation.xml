@@ -42,7 +42,13 @@
         android:id="@+id/accountFragment"
         android:name="com.wahidabd.mangain.view.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_bugReportFragment"
+            app:destination="@id/bugReportFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.wahidabd.mangain.view.detail.DetailFragment"
@@ -84,5 +90,19 @@
         <action
             android:id="@+id/action_newAnimeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bugReportFragment"
+        android:name="com.wahidabd.mangain.view.account.BugReportFragment"
+        android:label="fragment_bug_report"
+        tools:layout="@layout/fragment_bug_report" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
