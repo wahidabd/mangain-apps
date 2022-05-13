@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "321492855741",
+    "project_id": "mangain-c37f9",
+    "storage_bucket": "mangain-c37f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321492855741:android:baf94411e4b9f39f36c0d4",
+        "android_client_info": {
+          "package_name": "com.wahidabd.mangain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321492855741-mtvd9qvubs294affq5ovgm3epedddfb2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wahidabd.mangain",
+            "certificate_hash": "c78939303360e2c2029bd4018f4db5eb453f7262"
+          }
+        },
+        {
+          "client_id": "321492855741-b8mfhr834882aqrc1u5t5uck20m29532.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6ZBQy35CN0_P2SrkC_gQDjyMOFduy13k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321492855741-b8mfhr834882aqrc1u5t5uck20m29532.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

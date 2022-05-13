@@ -47,7 +47,8 @@ class MangaFragment : Fragment() {
         }.attach()
 
         binding.edtSearch.doOnTextChanged { text, _, _, _ ->
-            searchViewModel.updateQuery(text.toString())
+            if(text == null) searchViewModel.updateQuery("")
+            else searchViewModel.updateQuery(text.toString())
         }
     }
 

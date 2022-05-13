@@ -7,6 +7,7 @@ import com.wahidabd.mangain.core.SafeCall
 import com.wahidabd.mangain.data.networks.local.MyDatabase
 import com.wahidabd.mangain.data.networks.service.KomikindoService
 import com.wahidabd.mangain.data.sources.room.LocalDataSource
+import com.wahidabd.mangain.utils.MySharedPreference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +40,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideHistoryDao(db: MyDatabase) = db.historyDao()
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context) = MySharedPreference(context)
 
     @Provides
     @Singleton

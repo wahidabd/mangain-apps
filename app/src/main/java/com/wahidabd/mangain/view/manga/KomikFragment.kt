@@ -60,19 +60,14 @@ class KomikFragment : Fragment() {
     }
 
     private fun subscribe(){
-        lifecycleScope.launchWhenCreated {
-            viewModel.daftar.collectLatest {
-                pagingAdapter.submitData(it)
+        searchViewModel.query.observe(viewLifecycleOwner){
+            lifecycleScope.launchWhenCreated {
+                viewModel.search(it).collectLatest { pagingAdapter.submitData(it) }
             }
         }
 
-        searchViewModel.query.observe(viewLifecycleOwner){ query ->
-            lifecycleScope.launchWhenCreated {
-                viewModel.search(query).collectLatest {
-                    pagingAdapter.submitData(it)
-//                    Timber.d("DATA $it")
-                }
-            }
+        lifecycleScope.launchWhenCreated {
+            viewModel.daftar.collectLatest { pagingAdapter.submitData(it) }
         }
     }
 
