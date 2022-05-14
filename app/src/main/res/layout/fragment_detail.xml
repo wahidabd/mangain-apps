@@ -84,7 +84,7 @@
                 android:layout_margin="6dp"
                 android:gravity="center_vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/img_item_preview"
-                app:layout_constraintEnd_toEndOf="@+id/iv_favorite">
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <ImageView
                     android:layout_width="22dp"

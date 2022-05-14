@@ -1,7 +1,9 @@
 package com.wahidabd.mangain.view.account
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,10 +52,19 @@ class AccountFragment : Fragment() {
 
         binding.linearClearCache.setOnClickListener { clearCache(requireContext()) }
         binding.ivLogout.setOnClickListener { logout() }
+        binding.linearSendRating.setOnClickListener { sendRating() }
 
         binding.linearBugAndReport.setOnClickListener {
             val action = AccountFragmentDirections.actionAccountFragmentToBugReportFragment(pref.email, pref.name)
             findNavController().navigate(action)
+        }
+    }
+
+    private fun sendRating(){
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.wahidabd.mangain")))
+        }catch (e: ActivityNotFoundException){
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.wahidabd.mangain")))
         }
     }
 

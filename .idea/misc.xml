@@ -7,6 +7,7 @@
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_blue_4dp.xml" value="0.223" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_dark_10.xml" value="0.1405" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_green_6dp.xml" value="0.223" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_primary.xml" value="0.1295" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_soft_dark.xml" value="0.169" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_round_white_6dp.xml" value="0.223" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/drawable/bg_stroke_rectangle_blue_6dp.xml" value="0.1295" />
@@ -24,7 +25,7 @@
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_bookmark.xml" value="0.3625" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_bug_report.xml" value="0.33" />
-        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_detail.xml" value="0.33" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_detail.xml" value="0.25" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_favorite.xml" value="0.3625" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_history.xml" value="0.33" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -45,6 +46,7 @@
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/item_popular.xml" value="0.33" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/item_reader.xml" value="0.25" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/load_state_footer.xml" value="0.25" />
+        <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/layout/popup_filter_chapter.xml" value="0.3625" />
         <entry key="..\:/Mobile/My Proyek/mangain/app/src/main/res/menu/menu.xml" value="0.3625" />
       </map>
     </option>

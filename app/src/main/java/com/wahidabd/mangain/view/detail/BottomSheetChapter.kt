@@ -2,10 +2,10 @@ package com.wahidabd.mangain.view.detail
 
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.LinearLayout
+import android.widget.PopupWindow
+import androidx.core.widget.PopupWindowCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wahidabd.mangain.data.models.Chapter
 import com.wahidabd.mangain.databinding.BottomSheetChpaterBinding
+import com.wahidabd.mangain.databinding.PopupFilterChapterBinding
 import com.wahidabd.mangain.view.detail.adapter.ChapterBottomSheetAdapter
 import java.util.*
 
@@ -58,6 +59,8 @@ class BottomSheetChapter(
         binding.imgClose.setOnClickListener {
             dialog?.dismiss()
         }
+
+        binding.ivFilter.setOnClickListener { popup() }
     }
 
     private fun search(q: String){
@@ -70,6 +73,20 @@ class BottomSheetChapter(
         }
 
         mAdapter.setData = filtered
+    }
+
+    private fun popup(){
+        val popupBinding = PopupFilterChapterBinding.inflate(layoutInflater)
+        val popupWindow = PopupWindow(
+            popupBinding.root,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            true
+        )
+
+        popupWindow.elevation = 10f
+        PopupWindowCompat.showAsDropDown(popupWindow, binding.ivFilter, 0, 0, Gravity.CLIP_VERTICAL)
+        PopupWindowCompat.setWindowLayoutType(popupWindow, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
     }
 
 }
