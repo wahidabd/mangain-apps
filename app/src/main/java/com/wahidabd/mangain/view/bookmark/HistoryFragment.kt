@@ -40,7 +40,7 @@ class HistoryFragment : Fragment() {
             itemAnimator = DefaultItemAnimator()
         }
 
-        viewModel.allHistory.observe(viewLifecycleOwner){
+        viewModel.allHistory().observe(viewLifecycleOwner){
             historyAdapter.setData = it
         }
 

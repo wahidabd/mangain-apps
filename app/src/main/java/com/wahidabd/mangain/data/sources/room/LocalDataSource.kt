@@ -12,11 +12,13 @@ class LocalDataSource @Inject constructor(private val database: MyDatabase) {
     fun getBookmarkById(id: String?) = database.bookmarkDao().getBookmarkById(id)
     fun insertBookmark(data: BookmarkData) = database.bookmarkDao().insertBookmark(data)
     fun deleteBookmark(id: String?) = database.bookmarkDao().deleteBookmarkById(id)
+    fun deleteAllBookmark() = database.bookmarkDao().deleteBookmark()
 
     fun getHistory(): Flow<List<HistoryData>> = database.historyDao().getAllHistory()
     fun getHistoryById(id: String?) = database.historyDao().getHistoryById(id)
     fun insertHistory(data: HistoryData) = database.historyDao().insertHistory(data)
     fun deleteHistory(id: String?) = database.historyDao().deleteHistoryById(id)
     fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = database.historyDao().updateChapter(id, id_chapter, chapter)
+    fun deleteAllHistory() = database.historyDao().deleteHistory()
     fun autoDelete() = database.historyDao().autoDelete()
 }

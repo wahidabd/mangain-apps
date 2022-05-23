@@ -15,11 +15,13 @@ class LocalRepository @Inject constructor(
     override fun getBookmarkById(id: String?): Flow<BookmarkData> = database.getBookmarkById(id)
     override fun insertBookmark(data: BookmarkData) = database.insertBookmark(data)
     override fun deleteBookmark(id: String?) = database.deleteBookmark(id)
+    override fun deleteAllBookmark() = database.deleteAllBookmark()
 
     override fun getAllHistory(): Flow<List<HistoryData>> = database.getHistory()
     override fun getHistoryById(id: String?): Flow<HistoryData> = database.getHistoryById(id)
     override fun insertHistory(data: HistoryData) = database.insertHistory(data)
     override fun deleteHistory(id: String?) = database.deleteHistory(id)
     override fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = database.updateHistory(id, id_chapter, chapter)
+    override fun deleteAllHistory() = database.deleteAllHistory()
     override fun autoDelete() = database.autoDelete()
 }

@@ -18,6 +18,9 @@ interface BookmarkDao{
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertBookmark(data: BookmarkData)
 
+    @Query("DELETE FROM bookmark_entity")
+    fun deleteBookmark()
+
     @Query("DELETE FROM bookmark_entity WHERE id = :id")
     fun deleteBookmarkById(id: String?)
 }

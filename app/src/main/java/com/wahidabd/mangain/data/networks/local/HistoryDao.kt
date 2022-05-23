@@ -24,6 +24,9 @@ interface HistoryDao {
     @Query("DELETE FROM history_entity WHERE id = :id")
     fun deleteHistoryById(id: String?)
 
+    @Query("DELETE FROM history_entity")
+    fun deleteHistory()
+
     @Query("DELETE FROM history_entity WHERE id NOT IN (SELECT id FROM history_entity ORDER BY updated_at LIMIT 50)")
     fun autoDelete()
 }

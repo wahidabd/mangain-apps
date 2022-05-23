@@ -25,6 +25,7 @@ import com.wahidabd.mangain.view.detail.adapter.ChapterAdapter
 import com.wahidabd.mangain.viewmodel.DetailMangaViewModel
 import com.wahidabd.mangain.viewmodel.LocalViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.time.LocalDateTime
 
 @AndroidEntryPoint
@@ -148,12 +149,14 @@ class DetailFragment : Fragment() {
     private fun insertBookmark(data: BookmarkData){
         localViewModel.insertBookmark(data)
         status = true
+        Timber.d("INSERT BOOKMARK")
         checkFavorite(data.id)
     }
 
     private fun deleteBookmark(id: String){
         localViewModel.deleteBookmark(id)
         status = false
+        Timber.d("DELETE BOOKMARK")
         checkFavorite(id)
     }
 

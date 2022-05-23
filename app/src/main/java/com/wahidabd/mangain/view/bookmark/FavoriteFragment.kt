@@ -46,7 +46,7 @@ class FavoriteFragment : Fragment() {
             itemAnimator = DefaultItemAnimator()
         }
 
-        viewModel.allBookmark.observe(viewLifecycleOwner){
+        viewModel.allBookmark().observe(viewLifecycleOwner){
             bookmarkAdapter.setData = it
         }
     }

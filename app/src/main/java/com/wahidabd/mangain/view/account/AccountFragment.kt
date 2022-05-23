@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,7 @@ import com.wahidabd.mangain.utils.circularProgress
 import com.wahidabd.mangain.utils.quickShowToast
 import com.wahidabd.mangain.utils.setImageChapter
 import com.wahidabd.mangain.view.splash.AuthActivity
+import com.wahidabd.mangain.viewmodel.LocalViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import javax.inject.Inject
@@ -27,6 +29,7 @@ class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
+    private val localViewModel: LocalViewModel by viewModels()
 
     private lateinit var auth: FirebaseAuth
     @Inject lateinit var pref: MySharedPreference
@@ -53,11 +56,41 @@ class AccountFragment : Fragment() {
         binding.linearClearCache.setOnClickListener { clearCache(requireContext()) }
         binding.ivLogout.setOnClickListener { logout() }
         binding.linearSendRating.setOnClickListener { sendRating() }
+        binding.linearClearFavorite.setOnClickListener { deleteAllBookmark() }
+        binding.linearClearHistory.setOnClickListener { deleteAllHistory() }
 
         binding.linearBugAndReport.setOnClickListener {
             val action = AccountFragmentDirections.actionAccountFragmentToBugReportFragment(pref.email, pref.name)
             findNavController().navigate(action)
         }
+    }
+
+    private fun deleteAllHistory(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Hapus Data Hostory!")
+            .setMessage("Data history yang dihapus tidak dapat dikembalikan")
+            .setPositiveButton("Hapus"){_, _ ->
+                localViewModel.deleteAllHistory()
+                quickShowToast("Data history berhasil dihapus!")
+            }
+            .setNegativeButton("Batal"){d, _ ->
+                d.dismiss()
+            }
+            .show()
+    }
+
+    private fun deleteAllBookmark(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Hapus Data Favorite!")
+            .setMessage("Data favorite yang dihapus tidak dapat dikembalikan")
+            .setPositiveButton("Hapus"){_, _ ->
+                localViewModel.deleteAllBookmark()
+                quickShowToast("Data favorite berhasil dihapus!")
+            }
+            .setNegativeButton("Batal"){d, _ ->
+                d.dismiss()
+            }
+            .show()
     }
 
     private fun sendRating(){
