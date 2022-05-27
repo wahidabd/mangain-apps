@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.google.android.material.snackbar.Snackbar
 import com.wahidabd.mangain.R
 import com.wahidabd.mangain.core.Status
 import com.wahidabd.mangain.data.models.Chapter
@@ -79,8 +80,20 @@ class DetailFragment : Fragment() {
         }
 
         binding.ivBookmark.setOnClickListener {
-            if (status ==  true) deleteBookmark(args.id)
-            else insertBookmark(bookmarkData)
+            if (status ==  true) {
+                deleteBookmark(args.id)
+                quickShowToast("Berhasil dihapus")
+            }
+            else{
+                insertBookmark(bookmarkData)
+                val snack = Snackbar.make(it, "Ditambah ke favorite", Snackbar.LENGTH_LONG)
+                    .setAction("Lihat") {
+                    val action = DetailFragmentDirections.actionDetailFragmentToBookmarkFragment()
+                    findNavController().navigate(action)
+                }
+
+                snack.show()
+            }
         }
 
         viewModel.detail(args.id)

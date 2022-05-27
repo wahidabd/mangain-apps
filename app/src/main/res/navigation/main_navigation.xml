@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_bookmarkFragment_to_readerFragment"
             app:destination="@id/readerFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_readerHistoryFragment"
+            app:destination="@id/readerHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -60,6 +63,9 @@
         <action
             android:id="@+id/action_detailFragment_to_readerFragment"
             app:destination="@id/readerFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
     </fragment>
     <fragment
         android:id="@+id/readerFragment"
@@ -104,5 +110,27 @@
             android:name="email"
             app:argType="string"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/readerHistoryFragment"
+        android:name="com.wahidabd.mangain.view.detail.ReaderHistoryFragment"
+        android:label="fragment_reader_history"
+        tools:layout="@layout/fragment_reader_history" >
+        <action
+            android:id="@+id/action_readerHistoryFragment_self"
+            app:destination="@id/readerHistoryFragment"
+            app:popUpTo="@id/bookmarkFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="id_komik"
+            app:argType="string" />
+        <argument
+            android:name="title_komik"
+            app:argType="string" />
+        <argument
+            android:name="cover"
+            app:argType="string" />
     </fragment>
 </navigation>

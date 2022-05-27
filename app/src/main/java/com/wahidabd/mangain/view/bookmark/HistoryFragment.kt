@@ -45,7 +45,7 @@ class HistoryFragment : Fragment() {
         }
 
         historyAdapter.setOnItemClicked {
-            val action = BookmarkFragmentDirections.actionBookmarkFragmentToReaderFragment(it.id_chapter!!, it.id, it.chapter!!, it.cover!!)
+            val action = BookmarkFragmentDirections.actionBookmarkFragmentToReaderHistoryFragment(it.id_chapter!!, it.id, it.chapter!!, it.cover!!)
             findNavController().navigate(action)
         }
 
