@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.wahidabd.mangain.data.models.room.BookmarkData
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 import com.wahidabd.mangain.domain.usecase.local.LocalUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -27,4 +28,7 @@ class LocalViewModel @Inject constructor(
     fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = useCase.updateHistory(id, id_chapter, chapter)
     fun deleteAllHistory() = useCase.deleteAllHistory()
     fun autoDelete() = useCase.autoDelete()
+
+    fun insertRead(data: ReadData) = useCase.insertRead(data)
+    fun readById(id: String?): LiveData<ReadData> = useCase.readById(id).asLiveData()
 }

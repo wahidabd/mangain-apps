@@ -2,6 +2,7 @@ package com.wahidabd.mangain.data.sources.room
 
 import com.wahidabd.mangain.data.models.room.BookmarkData
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 import com.wahidabd.mangain.data.networks.local.MyDatabase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -21,4 +22,7 @@ class LocalDataSource @Inject constructor(private val database: MyDatabase) {
     fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = database.historyDao().updateChapter(id, id_chapter, chapter)
     fun deleteAllHistory() = database.historyDao().deleteHistory()
     fun autoDelete() = database.historyDao().autoDelete()
+
+    fun insertRead(data: ReadData) = database.readDao().insertRead(data)
+    fun readById(id: String?) = database.readDao().readById(id)
 }

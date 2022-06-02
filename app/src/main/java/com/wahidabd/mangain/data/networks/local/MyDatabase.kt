@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.wahidabd.mangain.data.models.room.BookmarkData
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 
-@Database(entities = [BookmarkData::class, HistoryData::class], version = 1, exportSchema = false)
+@Database(entities = [BookmarkData::class, HistoryData::class, ReadData::class], version = 2, exportSchema = false)
 abstract class MyDatabase: RoomDatabase() {
     abstract fun bookmarkDao(): BookmarkDao
     abstract fun historyDao(): HistoryDao
+    abstract fun readDao(): ReadDao
 
     companion object{
         @Volatile

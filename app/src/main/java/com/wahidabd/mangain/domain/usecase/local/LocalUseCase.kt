@@ -2,6 +2,7 @@ package com.wahidabd.mangain.domain.usecase.local
 
 import com.wahidabd.mangain.data.models.room.BookmarkData
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 import kotlinx.coroutines.flow.Flow
 
 interface LocalUseCase {
@@ -18,4 +19,7 @@ interface LocalUseCase {
     fun updateHistory(id: String?, id_chapter: String?, chapter: String?)
     fun deleteAllHistory()
     fun autoDelete()
+
+    fun insertRead(data: ReadData)
+    fun readById(id: String?): Flow<ReadData>
 }

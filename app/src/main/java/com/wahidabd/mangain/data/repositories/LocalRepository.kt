@@ -2,6 +2,7 @@ package com.wahidabd.mangain.data.repositories
 
 import com.wahidabd.mangain.data.models.room.BookmarkData
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 import com.wahidabd.mangain.data.sources.room.LocalDataSource
 import com.wahidabd.mangain.domain.repository.LocalRepositoryImpl
 import kotlinx.coroutines.flow.Flow
@@ -24,4 +25,7 @@ class LocalRepository @Inject constructor(
     override fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = database.updateHistory(id, id_chapter, chapter)
     override fun deleteAllHistory() = database.deleteAllHistory()
     override fun autoDelete() = database.autoDelete()
+
+    override fun insertRead(data: ReadData) = database.insertRead(data)
+    override fun readById(id: String?): Flow<ReadData> = database.readById(id)
 }

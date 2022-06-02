@@ -2,6 +2,7 @@ package com.wahidabd.mangain.domain.usecase.local
 
 import com.wahidabd.mangain.data.models.room.BookmarkData
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 import com.wahidabd.mangain.domain.repository.LocalRepositoryImpl
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -22,4 +23,7 @@ class LocalInteractor @Inject constructor(
     override fun updateHistory(id: String?, id_chapter: String?, chapter: String?) = repo.updateHistory(id, id_chapter, chapter)
     override fun deleteAllHistory() = repo.deleteAllHistory()
     override fun autoDelete() = repo.autoDelete()
+
+    override fun insertRead(data: ReadData) = repo.insertRead(data)
+    override fun readById(id: String?): Flow<ReadData> = repo.readById(id)
 }

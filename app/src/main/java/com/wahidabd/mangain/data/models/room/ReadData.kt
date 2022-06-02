@@ -12,4 +12,7 @@ data class ReadData(
     @NonNull
     @ColumnInfo(name = "id")
     val id: String,
+
+    @ColumnInfo(name = "update_at")
+    val update_at: String? = null
 )

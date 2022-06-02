@@ -12,6 +12,10 @@ interface ReadDao {
     @Query("SELECT * FROM read_entity")
     fun getAllRead(): Flow<List<ReadData>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRead(data: ReadData)
+
+    @Query("SELECT * FROM read_entity WHERE id = :id")
+    fun readById(id: String?): Flow<ReadData>
+
 }

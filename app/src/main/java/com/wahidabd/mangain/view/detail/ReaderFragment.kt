@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wahidabd.mangain.core.Status
 import com.wahidabd.mangain.data.models.room.HistoryData
+import com.wahidabd.mangain.data.models.room.ReadData
 import com.wahidabd.mangain.databinding.FragmentReaderBinding
 import com.wahidabd.mangain.utils.quickShowToast
 import com.wahidabd.mangain.view.detail.adapter.ReaderAdapter
@@ -36,7 +37,6 @@ class ReaderFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentReaderBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -107,6 +107,13 @@ class ReaderFragment : Fragment() {
 
             checkHistory(historyData)
 
+            val readData = ReadData(
+                id = args.idKomik,
+                update_at = LocalDateTime.now().toString()
+            )
+
+            insertRead(readData)
+
             binding.btnNext.setOnClickListener { _ ->
                 val action = ReaderFragmentDirections.actionReaderFragmentSelf(it.next!!, args.idKomik, args.titleKomik, args.cover)
                 findNavController().navigate(action)
@@ -134,5 +141,9 @@ class ReaderFragment : Fragment() {
                 Timber.e("INSERT HISTORY")
             }
         }
+    }
+
+    private fun insertRead(data: ReadData){
+        localViewModel.insertRead(data)
     }
 }
