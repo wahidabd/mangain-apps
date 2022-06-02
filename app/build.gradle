@@ -26,6 +26,7 @@ android {
 
         buildConfigField ("String", "BASE_URL", baseUrlProperties['PROD_URL'])
         buildConfigField ("String", "APP_NAME", '"Manga Indonesia"')
+        buildConfigField ("String", "PRIVACY_URL", baseUrlProperties['PRIVACY_URL'])
 
         manifestPlaceholders = [appName: "Manga Indonesia"]
     }

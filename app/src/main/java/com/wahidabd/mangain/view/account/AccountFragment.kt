@@ -63,6 +63,11 @@ class AccountFragment : Fragment() {
             val action = AccountFragmentDirections.actionAccountFragmentToBugReportFragment(pref.email, pref.name)
             findNavController().navigate(action)
         }
+
+        binding.linearPrivacyPolicy.setOnClickListener {
+            val action = AccountFragmentDirections.actionAccountFragmentToPrivacyPolicyFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun deleteAllHistory(){

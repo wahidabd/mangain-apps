@@ -279,11 +279,11 @@
 
                 </LinearLayout>
 
-                <Switch
-                    android:id="@+id/notification_toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+<!--                <Switch-->
+<!--                    android:id="@+id/notification_toggle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:ignore="UseSwitchCompatOrMaterialXml" />-->
 
             </LinearLayout>
 
@@ -434,11 +434,6 @@
                     android:layout_marginStart="10dp"
                     android:textSize="14sp"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    app:tint="@color/white"/>
 
             </LinearLayout>
 
@@ -449,6 +444,7 @@
 
             <!--    Privacy Policy    -->
             <LinearLayout
+                android:id="@+id/linear_privacy_policy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

@@ -82,17 +82,11 @@ class DetailFragment : Fragment() {
         binding.ivBookmark.setOnClickListener {
             if (status ==  true) {
                 deleteBookmark(args.id)
-                quickShowToast("Berhasil dihapus")
+                Snackbar.make(it, "Dihapus dari favorite", Snackbar.LENGTH_LONG).show()
             }
             else{
                 insertBookmark(bookmarkData)
-                val snack = Snackbar.make(it, "Ditambah ke favorite", Snackbar.LENGTH_LONG)
-                    .setAction("Lihat") {
-                    val action = DetailFragmentDirections.actionDetailFragmentToBookmarkFragment()
-                    findNavController().navigate(action)
-                }
-
-                snack.show()
+                Snackbar.make(it, "Ditambah ke favorite", Snackbar.LENGTH_LONG).show()
             }
         }
 
@@ -162,14 +156,12 @@ class DetailFragment : Fragment() {
     private fun insertBookmark(data: BookmarkData){
         localViewModel.insertBookmark(data)
         status = true
-        Timber.d("INSERT BOOKMARK")
         checkFavorite(data.id)
     }
 
     private fun deleteBookmark(id: String){
         localViewModel.deleteBookmark(id)
         status = false
-        Timber.d("DELETE BOOKMARK")
         checkFavorite(id)
     }
 
